@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import 'bootstrap/dist/css/bootstrap.min.css'
+import { removeDuplicates, mapData } from '../Helpers/removeDuplicates';
 import './Table.css';
 
 const Table = () => {
@@ -13,6 +13,7 @@ const Table = () => {
             .includes(search.toLowerCase()
                 .replace(/[^\w]/g, '')));
 
+    // Get data on initial load only           
     useEffect(() => {
         axios.get('https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json').then(res => {
             setData(res.data.pokemon);
@@ -20,36 +21,55 @@ const Table = () => {
     }, []);
 
     useEffect(() => {
-        searchedData();
+        setData(filtered)
     }, [search])
 
-    const searchedData = () => {
-        if (filtered.length) {
-            setData(filtered);
-        }
-    }
-
+    // search bar
     const searched = e => {
         setVal(e);
         setSearch(e);
     }
 
-    const onClick = () => {
+    // reset button
+    const reset = () => {
         axios.get('https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json').then(res => {
             setData(res.data.pokemon);
         })
         setVal('');
     }
 
-    const loading = () => {
-        return (
-            <div className='spinnerContainer'>
-                <div className="spinner-border" role="status">
-                    <span className="sr-only">Loading...</span>
-                </div>
-            </div>
-        );
-    };
+    // clean up data for filters
+    const typeOne = mapData(data, 0);
+    const typeTwo = mapData(data, 1);
+    const weaknessOne = mapData(data, 0);
+    const weaknessTwo = mapData(data, 1);
+    const weaknessThree = mapData(data, 2);
+    const weaknessFour = mapData(data, 3);
+    const weaknessFive = mapData(data, 4);
+    const weaknessSix = mapData(data, 5);
+    const weaknessSeven = mapData(data, 6);
+
+    const cleanedTypeOne = removeDuplicates(typeOne);
+    const cleanedTypeTwo = removeDuplicates(typeTwo).filter(e => e !== undefined);
+
+    const cleanedWeaknessOne = removeDuplicates(weaknessOne);
+    const cleanedWeanessTwo = removeDuplicates(weaknessTwo).filter(e => e !== undefined);
+    const cleanedWeaknessThree = removeDuplicates(weaknessThree).filter(e => e !== undefined);
+    const cleanedWeaknessFour = removeDuplicates(weaknessFour).filter(e => e !== undefined);
+    const cleanedWeaknessFive = removeDuplicates(weaknessFive).filter(e => e !== undefined);
+    const cleanedWeaknessSix = removeDuplicates(weaknessSix).filter(e => e !== undefined);
+    const cleanedWeaknessSeven = removeDuplicates(weaknessSeven).filter(e => e !== undefined);
+
+    const filteredType = removeDuplicates([...cleanedTypeOne, ...cleanedTypeTwo]);
+    const filteredWeakness = removeDuplicates([
+        ...cleanedWeaknessOne,
+        ...cleanedWeanessTwo,
+        ...cleanedWeaknessThree,
+        ...cleanedWeaknessFour,
+        ...cleanedWeaknessFive,
+        ...cleanedWeaknessSix,
+        ...cleanedWeaknessSeven
+    ]);
 
     return (
         <div className='rootContainer'>
@@ -64,9 +84,21 @@ const Table = () => {
                             placeholder='Search a name here'
                             type='text' value={val || ''}
                             onChange={e => searched(e.target.value)} />
-                        <button type="button" className="btn btn-primary" onClick={onClick}>Clear Search</button>
+                        <button type="button" className="btn btn-primary" onClick={reset}>Clear Search</button>
                     </div>
                     <div>
+                        <select className="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                            <option value={0}>Filter by Type...</option>
+                            {filteredType.map((e, i) => (
+                                <option value={i} key={i}>{e}</option>
+                            ))}
+                        </select>
+                        <select className="custom-select my-2 mr-sm-2" id="inlineFormCustomSelectPref2">
+                            <option value={0}>Filter by Weaknesses...</option>
+                            {filteredWeakness.map((e, i) => (
+                                <option value={i} key={i}>{e}</option>
+                            ))}
+                        </select>
                     </div>
                 </div>
             </div>
