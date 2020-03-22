@@ -6,12 +6,16 @@ h1 {
     color: white;
     font-family: 'Gotu', sans-serif;
     margin-top: 5%;
+    margin-left: 10%;
+}
+
+.btn-primary {
+    margin-left: 4px;
 }
 
 .searchContainer {
     display: flex;
-    justify-content: center;
-    margin-bottom: 8%
+    margin-bottom: 6%
 }
 
 .form-control {

@@ -14,8 +14,14 @@ const Table = ({ data, setSearch, onClick, val }) => {
                 <div>
                     <h1>Pokédex Table</h1>
                     <div className='searchContainer'>
-                        <input type='text' value={val || ''} onChange={e => setSearch(e.target.value)} />
-                        <button onClick={onClick}>Clear Search</button>
+                        <input
+                            className="form-control"
+                            aria-label="Pokemon Search"
+                            aria-describedby="inputGroup-sizing-sm"
+                            placeholder='Search a name here'
+                            type='text' value={val || ''}
+                            onChange={e => setSearch(e.target.value)} />
+                        <button type="button" className="btn btn-primary">Clear Search</button>
                     </div>
                 </div>
             </div>
