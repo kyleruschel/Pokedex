@@ -50,7 +50,7 @@ h1 {
 }
 
 .thead-weaknesses {
-    text-align: right;
+    text-align: center;
 }
 
 .pokemonNum {
@@ -58,11 +58,11 @@ h1 {
 }
 
 .pokemonImage {
-    width: 25%;
+    width: 15%;
 }
 
 .pokemonImg {
-    margin-left: 40%
+    margin-left: 32%
 }
 
 .pokemonName {
@@ -77,5 +77,5 @@ h1 {
 
 .pokemonWeaknesses {
     width: 250px;
-    text-align: right;
+    text-align: center;
 }
