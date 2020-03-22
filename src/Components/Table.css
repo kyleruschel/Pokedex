@@ -42,11 +42,11 @@ h1 {
 }
 
 .thead-image {
-    text-align: right;
+    text-align: center;
 }
 
 .thead-type {
-    text-align: right;
+    text-align: center;
 }
 
 .thead-weaknesses {
@@ -58,15 +58,21 @@ h1 {
 }
 
 .pokemonImage {
-    margin-left: 55%;
+    width: 25%;
+}
+
+.pokemonImg {
+    margin-left: 40%
 }
 
 .pokemonName {
     text-align: center;
+    width: 25%;
 }
 
 .pokemonType {
-    text-align: right;
+    text-align: center;
+    width: 25%;
 }
 
 .pokemonWeaknesses {

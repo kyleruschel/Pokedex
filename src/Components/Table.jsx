@@ -44,9 +44,9 @@ const Table = props => {
                                 <td className='pokemonName'>
                                     {e.name}
                                 </td>
-                                <td>
+                                <td className='pokemonImage'>
                                     <img src={e.img}
-                                        className='pokemonImage'
+                                        className='pokemonImg'
                                         height='60px'
                                         width='60px'
                                         alt={e.name} />
