@@ -100,7 +100,7 @@ const PokedexTable = () => {
                             className="form-control"
                             aria-label="Pokemon Search"
                             aria-describedby="inputGroup-sizing-sm"
-                            placeholder='Search a name here'
+                            placeholder='Search by Pokémon name'
                             type='text' value={val || ''}
                             onChange={e => searched(e.target.value)} />
                         <button
@@ -108,7 +108,7 @@ const PokedexTable = () => {
                             className="btn btn-secondary"
                             onClick={reset}
                         >
-                            Clear Search
+                            Refresh
                         </button>
                     </div>
                     <div className='selectContainer'>

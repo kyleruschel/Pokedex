@@ -24,7 +24,7 @@
 
 .searchContainer {
     display: flex;
-    margin-bottom: 6%
+    margin-bottom: 3%
 }
 
 .selectContainer {
@@ -33,6 +33,7 @@
 
 .form-control {
     width: 250px;
+    margin-left: 4%;
 }
 
 .headerContainer {
