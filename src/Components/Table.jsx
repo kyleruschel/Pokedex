@@ -21,7 +21,7 @@ const Table = ({ data, setSearch, onClick, val }) => {
                             placeholder='Search a name here'
                             type='text' value={val || ''}
                             onChange={e => setSearch(e.target.value)} />
-                        <button type="button" className="btn btn-primary">Clear Search</button>
+                        <button type="button" className="btn btn-primary" onClick={onClick}>Clear Search</button>
                     </div>
                 </div>
             </div>
