@@ -2,7 +2,7 @@
     width: 100%;
 }
 
-h1 {
+.pokedexHeader {
     color: white;
     font-family: 'Gotu', sans-serif;
     margin-top: 5%;

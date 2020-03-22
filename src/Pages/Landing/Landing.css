@@ -13,23 +13,24 @@
 .rootChildContainer {
   text-align: center;
   margin-top: 10%;
+  width: 100%;
 }
 
 .header {
-  font-size: 10vw;
+  font-size: 9vw;
   font-family: 'Gotu', sans-serif;
   color: aliceblue;
 }
 
 .headerSubtitle {
   font-family: 'Gotu', sans-serif;
-  font-size: 3vw;
+  font-size: 2vw;
   color: aliceblue;
 }
 
 .pokeballImage {
     border-radius: 100%;
-    height: 25vw;
+    height: 15vw;
     margin-top: 5%;
 }
 

@@ -7,3 +7,13 @@
     background-size: cover;
     height: 100vh;
 }
+
+.spinnerContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.spinner-border {
+    color: white;
+    margin-top: 30%;
+}
