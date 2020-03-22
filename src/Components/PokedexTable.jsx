@@ -105,7 +105,7 @@ const PokedexTable = () => {
                             onChange={e => searched(e.target.value)} />
                         <button
                             type="button"
-                            className="btn btn-primary"
+                            className="btn btn-secondary"
                             onClick={reset}
                         >
                             Clear Search

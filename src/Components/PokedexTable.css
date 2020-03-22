@@ -9,8 +9,17 @@
     margin-left: 10%;
 }
 
-.btn-primary {
+.btn-secondary {
     margin-left: 4px;
+    background-color: rgb(51, 123, 190);
+}
+
+.btn-secondary:hover {
+    background-color: rgb(51, 123, 190);
+}
+
+.btn-secondary:focus {
+    background-color: rgb(110, 173, 255);;
 }
 
 .searchContainer {
