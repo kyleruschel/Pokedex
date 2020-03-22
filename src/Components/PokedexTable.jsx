@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { removeDuplicates, mapData } from '../Helpers/removeDuplicates';
-import './Table.css';
+import { removeDuplicates, mapDataType, mapDataWeakness } from '../Helpers/removeDuplicates';
+import './PokedexTable.css';
 
-const Table = () => {
+const PokedexTable = () => {
+    // State hooks
     const [data, setData] = useState([]);
     const [search, setSearch] = useState('');
     const [val, setVal] = useState('');
-    const filtered = data.map(e => e)
+
+    const filteredName = data.map(e => e)
         .filter(e => e.name.toLowerCase()
             .replace(/[^\w]/g, '')
             .includes(search.toLowerCase()
                 .replace(/[^\w]/g, '')));
 
-    // Get data on initial load only           
+    // Lifecycle hooks          
     useEffect(() => {
         axios.get('https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json').then(res => {
             setData(res.data.pokemon);
@@ -21,8 +23,13 @@ const Table = () => {
     }, []);
 
     useEffect(() => {
-        setData(filtered)
-    }, [search])
+        setData(filteredName);
+    }, [])
+
+    useEffect(() => {
+        selectValue1();
+        selectValue2();
+    }, [])
 
     // search bar
     const searched = e => {
@@ -30,7 +37,19 @@ const Table = () => {
         setSearch(e);
     }
 
-    // reset button
+    // Filter by Type function
+    const selectValue1 = e => {
+        const newDataForTypesOnly = data.map(i => i).filter(i => i.type.includes(e));
+        setData(newDataForTypesOnly);
+    }
+
+    // Filter by Weaknesses function
+    const selectValue2 = e => {
+        const newDataforWeaknessesOnly = data.map(i => i).filter(i => i.weaknesses.includes(e));
+        setData(newDataforWeaknessesOnly);
+    }
+
+    // reset function
     const reset = () => {
         axios.get('https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json').then(res => {
             setData(res.data.pokemon);
@@ -39,15 +58,15 @@ const Table = () => {
     }
 
     // clean up data for filters
-    const typeOne = mapData(data, 0);
-    const typeTwo = mapData(data, 1);
-    const weaknessOne = mapData(data, 0);
-    const weaknessTwo = mapData(data, 1);
-    const weaknessThree = mapData(data, 2);
-    const weaknessFour = mapData(data, 3);
-    const weaknessFive = mapData(data, 4);
-    const weaknessSix = mapData(data, 5);
-    const weaknessSeven = mapData(data, 6);
+    const typeOne = mapDataType(data, 0);
+    const typeTwo = mapDataType(data, 1);
+    const weaknessOne = mapDataWeakness(data, 0);
+    const weaknessTwo = mapDataWeakness(data, 1);
+    const weaknessThree = mapDataWeakness(data, 2);
+    const weaknessFour = mapDataWeakness(data, 3);
+    const weaknessFive = mapDataWeakness(data, 4);
+    const weaknessSix = mapDataWeakness(data, 5);
+    const weaknessSeven = mapDataWeakness(data, 6);
 
     const cleanedTypeOne = removeDuplicates(typeOne);
     const cleanedTypeTwo = removeDuplicates(typeTwo).filter(e => e !== undefined);
@@ -84,19 +103,35 @@ const Table = () => {
                             placeholder='Search a name here'
                             type='text' value={val || ''}
                             onChange={e => searched(e.target.value)} />
-                        <button type="button" className="btn btn-primary" onClick={reset}>Clear Search</button>
+                        <button
+                            type="button"
+                            className="btn btn-primary"
+                            onClick={reset}
+                        >
+                            Clear Search
+                        </button>
                     </div>
-                    <div>
-                        <select className="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                    <div className='selectContainer'>
+                        <select
+                            className="custom-select my-1 mr-sm-2"
+                            id="inlineFormCustomSelectPref"
+                            onChange={e => selectValue1(e.target.value)}
+                            defaultValue
+                        >
                             <option value={0}>Filter by Type...</option>
                             {filteredType.map((e, i) => (
-                                <option value={i} key={i}>{e}</option>
+                                <option value={e} key={i}>{e}</option>
                             ))}
                         </select>
-                        <select className="custom-select my-2 mr-sm-2" id="inlineFormCustomSelectPref2">
+                        <select
+                            className="custom-select my-2 mr-sm-2"
+                            id="inlineFormCustomSelectPref2"
+                            onChange={e => selectValue2(e.target.value)}
+                            defaultValue
+                        >
                             <option value={0}>Filter by Weaknesses...</option>
                             {filteredWeakness.map((e, i) => (
-                                <option value={i} key={i}>{e}</option>
+                                <option value={e} key={i}>{e}</option>
                             ))}
                         </select>
                     </div>
@@ -111,6 +146,8 @@ const Table = () => {
                             <th scope="col" className='thead-image'>Image</th>
                             <th scope="col" className='thead-type'>Type</th>
                             <th scope="col" className='thead-weaknesses'>Weaknesses</th>
+                            <th scope="col" className='thead-height'>Height</th>
+                            <th scope="col" className='thead-weight'>Weight</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -130,10 +167,16 @@ const Table = () => {
                                         alt={e.name} />
                                 </td>
                                 <td className='pokemonType'>
-                                    {e.type && e.type.join(' - ')}
+                                    {e.type.join(' + ')}
                                 </td>
                                 <td className='pokemonWeaknesses'>
-                                    {e.weaknesses && e.weaknesses.join(' - ')}
+                                    {e.weaknesses.join(' + ')}
+                                </td>
+                                <td className='pokemonHeight'>
+                                    {e.height}
+                                </td>
+                                <td className='pokemonWeight'>
+                                    {e.weight}
                                 </td>
                             </tr>
                         ))}
@@ -144,4 +187,4 @@ const Table = () => {
     )
 }
 
-export default Table;
+export default PokedexTable;

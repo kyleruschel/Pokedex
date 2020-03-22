@@ -7,6 +7,10 @@ export const removeDuplicates = arr => {
     }, []);
 }
 
-export const mapData = (data, val) => {
+export const mapDataType = (data, val) => {
     return data.map(e => e.type).map(e => e[val]);
+}
+
+export const mapDataWeakness = (data, val) => {
+    return data.map(e => e.weaknesses).map(e => e[val]);
 }
