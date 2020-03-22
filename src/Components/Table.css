@@ -1,0 +1,75 @@
+.rootContainer {
+    width: 100%;
+}
+
+h1 {
+    color: white;
+    font-family: 'Gotu', sans-serif;
+    margin-top: 5%;
+}
+
+.searchContainer {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 8%
+}
+
+.form-control {
+    width: 250px;
+}
+
+.headerContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.tableContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.table-striped {
+    background: aliceblue;
+    width: 80%;
+    overflow: scroll;
+}
+
+.thead-name {
+    text-align: center;
+    width: 180px;
+}
+
+.thead-image {
+    text-align: right;
+}
+
+.thead-type {
+    text-align: right;
+}
+
+.thead-weaknesses {
+    text-align: right;
+}
+
+.pokemonNum {
+    width: 100px;
+}
+
+.pokemonImage {
+    margin-left: 55%;
+}
+
+.pokemonName {
+    text-align: center;
+}
+
+.pokemonType {
+    text-align: right;
+}
+
+.pokemonWeaknesses {
+    width: 250px;
+    text-align: right;
+}
