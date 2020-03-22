@@ -24,7 +24,7 @@ const PokedexTable = () => {
 
     useEffect(() => {
         setData(filteredName);
-    }, [])
+    }, [search])
 
     useEffect(() => {
         selectValue1();
@@ -116,7 +116,7 @@ const PokedexTable = () => {
                             className="custom-select my-1 mr-sm-2"
                             id="inlineFormCustomSelectPref"
                             onChange={e => selectValue1(e.target.value)}
-                            defaultValue
+                            value={0}
                         >
                             <option value={0}>Filter by Type...</option>
                             {filteredType.map((e, i) => (
@@ -127,7 +127,7 @@ const PokedexTable = () => {
                             className="custom-select my-2 mr-sm-2"
                             id="inlineFormCustomSelectPref2"
                             onChange={e => selectValue2(e.target.value)}
-                            defaultValue
+                            value={0}
                         >
                             <option value={0}>Filter by Weaknesses...</option>
                             {filteredWeakness.map((e, i) => (
