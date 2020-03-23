@@ -1,0 +1,37 @@
+.detailsHeaderContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    color: white;
+    /* font-family: 'Gotu', sans-serif; */
+}
+
+.title {
+    margin-top: 5%;
+}
+
+.jumboContainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.jumbotron {
+    width: 40%;
+    height: 40vw;
+}
+
+.imageContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.detailSpans {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.buttonContainer {
+    margin-top: 3%;
+}

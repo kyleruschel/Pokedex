@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { removeDuplicates, mapDataType, mapDataWeakness } from '../Helpers/removeDuplicates';
-import './PokedexTable.css';
+import { Link } from 'react-router-dom';
+import { removeDuplicates, mapDataType, mapDataWeakness } from '../../Helpers/removeDuplicates';
+import './pokedexTable.css';
 
 const PokedexTable = () => {
     // State hooks
@@ -160,11 +161,22 @@ const PokedexTable = () => {
                                     {e.name}
                                 </td>
                                 <td className='pokemonImage'>
-                                    <img src={e.img}
-                                        className='pokemonImg'
-                                        height='60px'
-                                        width='60px'
-                                        alt={e.name} />
+                                    <Link to={{
+                                        pathname: '/pokemonDetails',
+                                        state: {
+                                            ...data,
+                                            id: i,
+                                        }
+                                    }}>
+                                        <div>
+                                            <img src={e.img}
+                                                className='pokemonImg'
+                                                height='60px'
+                                                width='60px'
+                                                alt={e.name} />
+                                        </div>
+                                    </Link>
+                                    <p className='instructions'>Click image for more details</p>
                                 </td>
                                 <td className='pokemonType'>
                                     {e.type.join(' + ')}
