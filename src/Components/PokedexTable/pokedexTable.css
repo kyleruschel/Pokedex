@@ -118,3 +118,8 @@
     font-size: 12px;
     text-align: center;
 }
+
+.justify-content-center {
+    color: white;
+    margin-top: 30%;
+}
