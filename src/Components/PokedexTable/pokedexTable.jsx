@@ -96,14 +96,14 @@ const PokedexTable = () => {
             <div className='headerContainer'>
                 <div>
                     <h1 className='pokedexHeader'>Pokédex Table</h1>
-                        <div className='searchContainer'>
-                            <input
-                                className="form-control"
-                                aria-label="Pokemon Search"
-                                aria-describedby="inputGroup-sizing-sm"
-                                placeholder='Search by Pokémon name'
-                                type='text' value={val || ''}
-                                onChange={e => searched(e.target.value)} />
+                    <div className='searchContainer'>
+                        <input
+                            className="form-control"
+                            aria-label="Pokemon Search"
+                            aria-describedby="inputGroup-sizing-sm"
+                            placeholder='Search by Pokémon name'
+                            type='text' value={val || ''}
+                            onChange={e => searched(e.target.value)} />
                         <button
                             type="button"
                             className="btn btn-secondary"
@@ -111,88 +111,93 @@ const PokedexTable = () => {
                         >
                             Refresh
                         </button>
-                            </div>
-                            <div className='selectContainer'>
-                                <select
-                                    className="custom-select my-1 mr-sm-2"
-                                    id="inlineFormCustomSelectPref"
-                                    onChange={e => selectValue1(e.target.value)}
-                                    value={0}
-                                >
-                                    <option value={0}>Filter by Type...</option>
-                                    {filteredType.map((e, i) => (
-                                        <option value={e} key={i}>{e}</option>
-                                    ))}
-                                </select>
-                                <select
-                                    className="custom-select my-2 mr-sm-2"
-                                    id="inlineFormCustomSelectPref2"
-                                    onChange={e => selectValue2(e.target.value)}
-                                    value={0}
-                                >
-                                    <option value={0}>Filter by Weaknesses...</option>
-                                    {filteredWeakness.map((e, i) => (
-                                        <option value={e} key={i}>{e}</option>
-                                    ))}
-                                </select>
-                            </div>
-                        </div>
                     </div>
-                <div className='tableContainer'>
-                    <table className="table table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">Num</th>
-                                <th scope="col" className='thead-name'>Name</th>
-                                <th scope="col" className='thead-image'>Image</th>
-                                <th scope="col" className='thead-type'>Type</th>
-                                <th scope="col" className='thead-weaknesses'>Weaknesses</th>
-                                <th scope="col" className='thead-height'>Height</th>
-                                <th scope="col" className='thead-weight'>Weight</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {data.map((e, i) => (
-                                <tr key={i}>
-                                    <td className='pokemonNum'>
-                                        {e.num}
-                                    </td>
-                                    <td className='pokemonName'>
-                                        {e.name}
-                                    </td>
-                                    <td className='pokemonImage'>
-                                        <Link to={{
+                    <div className='selectContainer'>
+                        <select
+                            className="custom-select my-1 mr-sm-2"
+                            id="inlineFormCustomSelectPref"
+                            onChange={e => selectValue1(e.target.value)}
+                            value={0}
+                        >
+                            <option value={0}>Filter by Type...</option>
+                            {filteredType.map((e, i) => (
+                                <option value={e} key={i}>{e}</option>
+                            ))}
+                        </select>
+                        <select
+                            className="custom-select my-2 mr-sm-2"
+                            id="inlineFormCustomSelectPref2"
+                            onChange={e => selectValue2(e.target.value)}
+                            value={0}
+                        >
+                            <option value={0}>Filter by Weaknesses...</option>
+                            {filteredWeakness.map((e, i) => (
+                                <option value={e} key={i}>{e}</option>
+                            ))}
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div className='tableContainer'>
+                <table className="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Num</th>
+                            <th scope="col" className='thead-name'>Name</th>
+                            <th scope="col" className='thead-image'>Image</th>
+                            <th scope="col" className='thead-type'>Type</th>
+                            <th scope="col" className='thead-weaknesses'>Weaknesses</th>
+                            <th scope="col" className='thead-height'>Height</th>
+                            <th scope="col" className='thead-weight'>Weight</th>
+                        </tr>
+                    </thead>
+                    {!data.length ? (
+                        <div>
+                            <span>No data available, please refresh and try again</span>
+                        </div>) : (
+                            <tbody>
+                                {data.map((e, i) => (
+                                    <tr key={i}>
+                                        <td className='pokemonNum'>
+                                            {e.num}
+                                        </td>
+                                        <td className='pokemonName'>
+                                            {e.name}
+                                        </td>
+                                        <td className='pokemonImage'>
+                                            <Link to={{
                                                 pathname: '/pokemonDetails',
                                                 state: {
-                                                ...data,
-                                                id: i,
-                                            }
-                                        }}>
-                                            <div>
-                                                <img src={e.img}
-                                                    className='pokemonImg'
-                                                    height='60px'
-                                                    width='60px'
-                                                    alt={e.name} />
-                                            </div>
-                                        </Link>
-                                        <p className='instructions'>Click image for more details</p>
-                                    </td>
-                                    <td className='pokemonType'>
-                                        {e.type.join(' + ')}
-                                    </td>
-                                    <td className='pokemonWeaknesses'>
-                                        {e.weaknesses.join(' + ')}
-                                    </td>
-                                    <td className='pokemonHeight'>
-                                        {e.height}
-                                    </td>
-                                <td className='pokemonWeight'>
-                                    {e.weight}
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
+                                                    ...data,
+                                                    id: i,
+                                                }
+                                            }}>
+                                                <div>
+                                                    <img src={e.img}
+                                                        className='pokemonImg'
+                                                        height='60px'
+                                                        width='60px'
+                                                        alt={e.name} />
+                                                </div>
+                                            </Link>
+                                            <p className='instructions'>Click image for more details</p>
+                                        </td>
+                                        <td className='pokemonType'>
+                                            {e.type.join(' + ')}
+                                        </td>
+                                        <td className='pokemonWeaknesses'>
+                                            {e.weaknesses.join(' + ')}
+                                        </td>
+                                        <td className='pokemonHeight'>
+                                            {e.height}
+                                        </td>
+                                        <td className='pokemonWeight'>
+                                            {e.weight}
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        )}
                 </table>
             </div>
         </div>

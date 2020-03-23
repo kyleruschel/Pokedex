@@ -35,7 +35,7 @@ const PokemonDetails = props => {
             <div className='jumboContainer'>
                 <div className='jumbotron'>
                     <div className='imageContainer'>
-                        <img src={image} height='250px' width='250px' alt={name}/>
+                        <img src={image} height='150px' width='150px' alt={name}/>
                     </div>
                     <div className='detailSpans'>
                         <span><strong>Num:</strong> {num}</span>
