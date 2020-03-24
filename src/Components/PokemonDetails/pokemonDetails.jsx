@@ -10,46 +10,38 @@ const PokemonDetails = props => {
         setData(Array(Object.values(props.location.state)));
     }, [])
 
-    const image = data && data.map(e => e[id].img);
-    const name = data && data.map(e => e[id].name);
-    const num = data && data.map(e => e[id].num);
-    const height = data && data.map(e => e[id].height);
-    const weight = data && data.map(e => e[id].weight);
-    const type = data && data.map(e => e[id].type).join(' + ');
-    const candy = data && data.map(e => e[id].candy);
-    const candyCount = data && data.map(e => e[id].candy_count);
-    const egg = data && data.map(e => e[id].egg);
-    const spawnChance = data && data.map(e => e[id].spawn_chance);
-    const avgSpawns = data && data.map(e => e[id].avg_spawns);
-    const spawnTime = data && data.map(e => e[id].spawn_time);
-    const multipliers = data && data.map(e => e[id].multipliers);
-    const weaknesses = data && data.map(e => e[id].weaknesses).join(' + ');
+    const pokemon = data && data.map(e => e[id]);
 
     return (
         <div>
             <div>
                 <div className='detailsHeaderContainer'>
-                    <h1 className='title'>{name} details Page</h1>
+                    <h1 className='title'>{pokemon && pokemon[0]['name']} details Page</h1>
                 </div>
             </div>
             <div className='jumboContainer'>
                 <div className='jumbotron'>
                     <div className='imageContainer'>
-                        <img src={image} height='150px' width='150px' alt={name}/>
+                        <img src={pokemon && pokemon[0]['img']}
+                            className='pokemonDetailsImage'
+                            height='150px'
+                            width='150px'
+                            alt={pokemon && pokemon[0]['name']}
+                        />
                     </div>
                     <div className='detailSpans'>
-                        <span><strong>Num:</strong> {num}</span>
-                        <span><strong>Height:</strong> {height}</span>
-                        <span><strong>Weight:</strong> {weight}</span>
-                        <span><strong>Type:</strong> {type}</span>
-                        <span><strong>Candy:</strong> {candy}</span>
-                        <span><strong>Candy Count:</strong> {candyCount}</span>
-                        <span><strong>Egg:</strong> {egg}</span>
-                        <span><strong>Spawn Chance:</strong> {spawnChance}</span>
-                        <span><strong>Avg Spawns:</strong> {avgSpawns}</span>
-                        <span><strong>Spawn Time:</strong> {spawnTime}</span>
-                        <span><strong>Multipliers:</strong> {multipliers}</span>
-                        <span><strong>Weaknesses:</strong> {weaknesses}</span>
+                        <span className='pokemonDetails'><strong>Num:</strong> {pokemon && pokemon[0]['num']}</span>
+                        <span className='pokemonDetails'><strong>Height:</strong> {pokemon && pokemon[0]['height']}</span>
+                        <span className='pokemonDetails'><strong>Weight:</strong> {pokemon && pokemon[0]['weight']}</span>
+                        <span className='pokemonDetails'><strong>Type:</strong> {pokemon && pokemon[0]['type'].join(' + ')}</span>
+                        <span className='pokemonDetails'><strong>Candy:</strong> {pokemon && pokemon[0]['candy']}</span>
+                        <span className='pokemonDetails'><strong>Candy Count:</strong> {pokemon && pokemon[0]['candy_count']}</span>
+                        <span className='pokemonDetails'><strong>Egg:</strong> {pokemon && pokemon[0]['egg']}</span>
+                        <span className='pokemonDetails'><strong>Spawn Chance:</strong> {pokemon && pokemon[0]['spawn_chance']}</span>
+                        <span className='pokemonDetails'><strong>Avg Spawns:</strong> {pokemon && pokemon[0]['avg_spawns']}</span>
+                        <span className='pokemonDetails'><strong>Spawn Time:</strong> {pokemon && pokemon[0]['spawn_time']}</span>
+                        <span className='pokemonDetails'><strong>Multipliers:</strong> {pokemon && pokemon[0]['multipliers']}</span>
+                        <span className='pokemonDetails'><strong>Weaknesses:</strong> {pokemon && pokemon[0]['weaknesses'].join(' + ')}</span>
                         <div className='buttonContainer'>
                             <Link to='/pokedexTable'>
                                 <button className='btn btn-info'>Back to the Table</button>

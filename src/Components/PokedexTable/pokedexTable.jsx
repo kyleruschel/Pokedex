@@ -9,6 +9,7 @@ const PokedexTable = () => {
     const [data, setData] = useState([]);
     const [search, setSearch] = useState('');
     const [val, setVal] = useState('');
+    const [selected1, setSelected] = useState([]);
 
     const filteredName = data.map(e => e)
         .filter(e => e.name.toLowerCase()
@@ -42,6 +43,13 @@ const PokedexTable = () => {
     const selectValue1 = e => {
         const newDataForTypesOnly = data.map(i => i).filter(i => i.type.includes(e));
         setData(newDataForTypesOnly);
+
+        if(e !== undefined) {
+            setSelected(prev => ([
+                ...prev,
+                e
+            ]));
+        }
     }
 
     // Filter by Weaknesses function
@@ -91,6 +99,8 @@ const PokedexTable = () => {
         ...cleanedWeaknessSeven
     ]);
 
+    console.log(selected1);
+
     return (
         <div className='rootContainer'>
             <div className='headerContainer'>
@@ -135,6 +145,15 @@ const PokedexTable = () => {
                                 <option value={e} key={i}>{e}</option>
                             ))}
                         </select>
+                    </div>
+                    <div>
+                        <ul className="nav nav-pills">
+                                {selected1.map(e => (
+                                    <li className="nav-item">
+                                    <a className="nav-link active" href="#">{e}</a>
+                                    </li>
+                                ))}
+                        </ul>
                     </div>
                 </div>
             </div>

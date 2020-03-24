@@ -8,6 +8,7 @@
 
 .title {
     margin-top: 5%;
+    font-size: 35px;
 }
 
 .jumboContainer {
@@ -17,8 +18,8 @@
 }
 
 .jumbotron {
-    width: 40%;
-    height: 40vw;
+    width: 70vw;
+    height: 70vh;
 }
 
 .imageContainer {
@@ -34,4 +35,42 @@
 
 .buttonContainer {
     margin-top: 3%;
+}
+
+.pokemonDetails {
+    font-size: 2vh;
+    text-align: center;
+}
+
+@media screen  and (min-width: 900px) {
+    .jumbotron {
+        width: 500px;
+    }
+}
+
+@media screen  and (max-width: 416px) {
+    .pokemonDetailsImage {
+        height: 80px;
+        width: 80px;
+    }
+}
+
+@media screen  and (min-width: 323px) {
+    .btn-info {
+        margin-top: 10px;
+        height: 40px;
+        width: 150px;
+    }
+}
+
+@media screen  and (max-width: 414px) {
+    .title {
+        font-size: 24px;
+    }
+}
+
+@media screen and (min-width: 365px) and (max-width: 376px) {
+    .pokemonDetails {
+        font-size: 3.8vw;
+    }
 }
