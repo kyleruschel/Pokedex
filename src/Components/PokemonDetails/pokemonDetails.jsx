@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import './pokemonDetails.css';
+import './PokemonDetails.css';
 
 const PokemonDetails = props => {
     const [data, setData] = useState();

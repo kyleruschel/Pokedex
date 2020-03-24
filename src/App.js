@@ -1,7 +1,7 @@
 import React from 'react';
 import Landing from './Pages/Landing/Landing';
-import PokedexTable from './Components/PokedexTable/pokedexTable';
-import PokemonDetails from './Components/PokemonDetails/pokemonDetails';
+import PokedexTable from './Components/PokedexTable/PokedexTable';
+import PokemonDetails from './Components/PokemonDetails/PokemonDetails';
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
 

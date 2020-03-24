@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { removeDuplicates, mapDataType, mapDataWeakness } from '../../Helpers/removeDuplicates';
-import './pokedexTable.css';
+import './PokedexTable.css';
 
 const PokedexTable = () => {
     // State hooks
@@ -44,7 +44,7 @@ const PokedexTable = () => {
         const newDataForTypesOnly = data.map(i => i).filter(i => i.type.includes(e));
         setData(newDataForTypesOnly);
 
-        if(e !== undefined) {
+        if (e !== undefined) {
             setSelected(prev => ([
                 ...prev,
                 e
@@ -99,8 +99,6 @@ const PokedexTable = () => {
         ...cleanedWeaknessSeven
     ]);
 
-    console.log(selected1);
-
     return (
         <div className='rootContainer'>
             <div className='headerContainer'>
@@ -148,11 +146,11 @@ const PokedexTable = () => {
                     </div>
                     <div>
                         <ul className="nav nav-pills">
-                                {selected1.map(e => (
-                                    <li className="nav-item">
+                            {selected1.map(e => (
+                                <li className="nav-item">
                                     <a className="nav-link active" href="#">{e}</a>
-                                    </li>
-                                ))}
+                                </li>
+                            ))}
                         </ul>
                     </div>
                 </div>
@@ -171,9 +169,11 @@ const PokedexTable = () => {
                         </tr>
                     </thead>
                     {!data.length ? (
-                        <div>
-                            <span>No data available, please refresh and try again</span>
-                        </div>) : (
+                        <tbody>
+                            <tr>
+                                <td colSpan='7'>No data available, please refresh and try again</td>
+                            </tr>
+                        </tbody>) : (
                             <tbody>
                                 {data.map((e, i) => (
                                     <tr key={i}>
