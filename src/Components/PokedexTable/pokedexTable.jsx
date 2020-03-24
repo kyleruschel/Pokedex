@@ -2,7 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Badge } from 'react-bootstrap';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { removeDuplicates, mapDataType, mapDataWeakness } from '../../Helpers/removeDuplicates';
+import {
+    removeDuplicates,
+    cleanedTypes,
+    cleanedWeaknesses,
+} from '../../Helpers/removeDuplicates';
+
 import './PokedexTable.css';
 
 const PokedexTable = () => {
@@ -78,37 +83,8 @@ const PokedexTable = () => {
     }
 
     // clean up data for filters
-    const typeOne = mapDataType(data, 0);
-    const typeTwo = mapDataType(data, 1);
-    const weaknessOne = mapDataWeakness(data, 0);
-    const weaknessTwo = mapDataWeakness(data, 1);
-    const weaknessThree = mapDataWeakness(data, 2);
-    const weaknessFour = mapDataWeakness(data, 3);
-    const weaknessFive = mapDataWeakness(data, 4);
-    const weaknessSix = mapDataWeakness(data, 5);
-    const weaknessSeven = mapDataWeakness(data, 6);
-
-    const cleanedTypeOne = removeDuplicates(typeOne);
-    const cleanedTypeTwo = removeDuplicates(typeTwo).filter(e => e !== undefined);
-
-    const cleanedWeaknessOne = removeDuplicates(weaknessOne);
-    const cleanedWeanessTwo = removeDuplicates(weaknessTwo).filter(e => e !== undefined);
-    const cleanedWeaknessThree = removeDuplicates(weaknessThree).filter(e => e !== undefined);
-    const cleanedWeaknessFour = removeDuplicates(weaknessFour).filter(e => e !== undefined);
-    const cleanedWeaknessFive = removeDuplicates(weaknessFive).filter(e => e !== undefined);
-    const cleanedWeaknessSix = removeDuplicates(weaknessSix).filter(e => e !== undefined);
-    const cleanedWeaknessSeven = removeDuplicates(weaknessSeven).filter(e => e !== undefined);
-
-    const filteredType = removeDuplicates([...cleanedTypeOne, ...cleanedTypeTwo]);
-    const filteredWeakness = removeDuplicates([
-        ...cleanedWeaknessOne,
-        ...cleanedWeanessTwo,
-        ...cleanedWeaknessThree,
-        ...cleanedWeaknessFour,
-        ...cleanedWeaknessFive,
-        ...cleanedWeaknessSix,
-        ...cleanedWeaknessSeven
-    ]);
+    const filteredType = removeDuplicates([...cleanedTypes(data)]);
+    const filteredWeakness = removeDuplicates([...cleanedWeaknesses(data)]);
 
     return (
         <div className='rootContainer'>
