@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Badge } from 'react-bootstrap';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { removeDuplicates, mapDataType, mapDataWeakness } from '../../Helpers/removeDuplicates';
@@ -9,7 +10,8 @@ const PokedexTable = () => {
     const [data, setData] = useState([]);
     const [search, setSearch] = useState('');
     const [val, setVal] = useState('');
-    const [selected1, setSelected] = useState([]);
+    const [selectedType, setSelectedType] = useState([]);
+    const [selectedWeakness, setSelectedWeakness] = useState([]);
 
     const filteredName = data.map(e => e)
         .filter(e => e.name.toLowerCase()
@@ -45,7 +47,7 @@ const PokedexTable = () => {
         setData(newDataForTypesOnly);
 
         if (e !== undefined) {
-            setSelected(prev => ([
+            setSelectedType(prev => ([
                 ...prev,
                 e
             ]));
@@ -56,6 +58,13 @@ const PokedexTable = () => {
     const selectValue2 = e => {
         const newDataforWeaknessesOnly = data.map(i => i).filter(i => i.weaknesses.includes(e));
         setData(newDataforWeaknessesOnly);
+
+        if (e !== undefined) {
+            setSelectedWeakness(prev => ([
+                ...prev,
+                e
+            ]));
+        }
     }
 
     // reset function
@@ -64,6 +73,8 @@ const PokedexTable = () => {
             setData(res.data.pokemon);
         })
         setVal('');
+        setSelectedType([]);
+        setSelectedWeakness([]);
     }
 
     // clean up data for filters
@@ -143,15 +154,16 @@ const PokedexTable = () => {
                                 <option value={e} key={i}>{e}</option>
                             ))}
                         </select>
-                    </div>
-                    <div>
-                        <ul className="nav nav-pills">
-                            {selected1.map(e => (
-                                <li className="nav-item">
-                                    <a className="nav-link active" href="#">{e}</a>
-                                </li>
+                        <div className='pillType'>
+                            {selectedType.map(e => (
+                                <Badge pill variant="secondary" id='pillType'>{`Type: ${e}`}
+                                </Badge>
                             ))}
-                        </ul>
+                            {selectedWeakness.map(e => (
+                                <Badge pill variant="secondary" id='pillWeakness'>{`Weakness: ${e}`}
+                                </Badge>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>

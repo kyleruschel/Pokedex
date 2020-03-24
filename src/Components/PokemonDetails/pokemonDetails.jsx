@@ -12,6 +12,10 @@ const PokemonDetails = props => {
 
     const pokemon = data && data.map(e => e[id]);
 
+    // Handle Missing Data
+    const candyCount = pokemon && Object.keys(pokemon[0]).includes('candy_count');
+    const multipliers = pokemon && pokemon[0]['multipliers'];
+
     return (
         <div>
             <div>
@@ -35,12 +39,12 @@ const PokemonDetails = props => {
                         <span className='pokemonDetails'><strong>Weight:</strong> {pokemon && pokemon[0]['weight']}</span>
                         <span className='pokemonDetails'><strong>Type:</strong> {pokemon && pokemon[0]['type'].join(' + ')}</span>
                         <span className='pokemonDetails'><strong>Candy:</strong> {pokemon && pokemon[0]['candy']}</span>
-                        <span className='pokemonDetails'><strong>Candy Count:</strong> {pokemon && pokemon[0]['candy_count']}</span>
+                        <span className='pokemonDetails'><strong>Candy Count:</strong> {!candyCount ? 0 : pokemon && pokemon[0]['candy_count']}</span>
                         <span className='pokemonDetails'><strong>Egg:</strong> {pokemon && pokemon[0]['egg']}</span>
                         <span className='pokemonDetails'><strong>Spawn Chance:</strong> {pokemon && pokemon[0]['spawn_chance']}</span>
                         <span className='pokemonDetails'><strong>Avg Spawns:</strong> {pokemon && pokemon[0]['avg_spawns']}</span>
                         <span className='pokemonDetails'><strong>Spawn Time:</strong> {pokemon && pokemon[0]['spawn_time']}</span>
-                        <span className='pokemonDetails'><strong>Multipliers:</strong> {pokemon && pokemon[0]['multipliers']}</span>
+                        <span className='pokemonDetails'><strong>Multipliers:</strong> {multipliers == null ? 0 : multipliers}</span>
                         <span className='pokemonDetails'><strong>Weaknesses:</strong> {pokemon && pokemon[0]['weaknesses'].join(' + ')}</span>
                         <div className='buttonContainer'>
                             <Link to='/pokedexTable'>
