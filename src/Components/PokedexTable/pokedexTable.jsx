@@ -8,21 +8,14 @@ import {
     cleanedWeaknesses,
 } from '../../Helpers/removeDuplicates';
 
-import './PokedexTable.css';
+import './pokedexTable.css';
 
 const PokedexTable = () => {
     // State hooks
     const [data, setData] = useState([]);
-    const [search, setSearch] = useState('');
     const [val, setVal] = useState('');
     const [selectedType, setSelectedType] = useState([]);
     const [selectedWeakness, setSelectedWeakness] = useState([]);
-
-    const filteredName = data.map(e => e)
-        .filter(e => e.name.toLowerCase()
-            .replace(/[^\w]/g, '')
-            .includes(search.toLowerCase()
-                .replace(/[^\w]/g, '')));
 
     // Lifecycle hooks          
     useEffect(() => {
@@ -31,19 +24,16 @@ const PokedexTable = () => {
         })
     }, []);
 
-    useEffect(() => {
-        setData(filteredName);
-    }, [search])
-
-    useEffect(() => {
-        selectValue1();
-        selectValue2();
-    }, [])
-
     // search bar
     const searched = e => {
         setVal(e);
-        setSearch(e);
+        const makeLowerCase = e.toLowerCase();
+        const filteredName = data.map(e => e)
+            .filter(e => e.name.toLowerCase()
+                .replace(/[^\w]/g, '')
+                .includes(makeLowerCase
+                    .replace(/[^\w]/g, '')));
+        setData(filteredName);
     }
 
     // Filter by Type function
@@ -131,12 +121,12 @@ const PokedexTable = () => {
                             ))}
                         </select>
                         <div className='pillType'>
-                            {selectedType.map(e => (
-                                <Badge pill variant="secondary" id='pillType'>{`Type: ${e}`}
+                            {selectedType.map((e, i) => (
+                                <Badge pill variant="secondary" id='pillType' key={i}>{`Type: ${e}`}
                                 </Badge>
                             ))}
-                            {selectedWeakness.map(e => (
-                                <Badge pill variant="secondary" id='pillWeakness'>{`Weakness: ${e}`}
+                            {selectedWeakness.map((e, i) => (
+                                <Badge pill variant="secondary" id='pillWeakness' key={i}>{`Weakness: ${e}`}
                                 </Badge>
                             ))}
                         </div>
